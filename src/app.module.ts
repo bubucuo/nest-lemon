@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 // import { MongooseModule } from '@nestjs/mongoose';
 
 // 装饰器
@@ -16,7 +17,9 @@ import { UserModule } from './user/user.module';
       autoLoadModels: true,
       synchronize: true,
     }),
+
     UserModule,
+    AuthModule,
   ],
 
   // imports: [MongooseModule.forRoot('mongodb://localhost/nest')],
