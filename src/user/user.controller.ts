@@ -3,11 +3,13 @@ import { User } from './models/user.model';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 
+// 用户信息的控制器
+// crud操作: create read update delete 增删改查
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get('/test')
+  @Get('/test2')
   test(): string {
     return 'This action returns test users';
   }

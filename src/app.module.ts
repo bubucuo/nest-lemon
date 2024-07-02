@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { UserModule } from './user/user.module';
-import { User } from './user/models/user.model';
+// import { MongooseModule } from '@nestjs/mongoose';
 
+// 装饰器
 @Module({
   imports: [
     SequelizeModule.forRoot({
@@ -17,6 +18,8 @@ import { User } from './user/models/user.model';
     }),
     UserModule,
   ],
+
+  // imports: [MongooseModule.forRoot('mongodb://localhost/nest')],
 })
 export class AppModule {
   // constructor(private dataSource: DataSource) {}
