@@ -54,4 +54,9 @@ export class UserController {
   update(@Body() updateUserDto: CreateUserDto): Promise<void> {
     return this.userService.update(updateUserDto);
   }
+
+  @Post('/login')
+  login(@Body() loginUserDto: CreateUserDto): Promise<User> {
+    return this.userService.login(loginUserDto);
+  }
 }

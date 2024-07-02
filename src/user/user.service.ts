@@ -78,4 +78,13 @@ export class UserService {
     // 返回user对象的json
     return user.toJSON();
   }
+
+  async login(loginUserDto: CreateUserDto): Promise<User> {
+    return this.userModel.findOne({
+      where: {
+        username: loginUserDto.username,
+        password: loginUserDto.password,
+      },
+    });
+  }
 }
