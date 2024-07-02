@@ -23,21 +23,17 @@ export class UserService {
     });
   }
 
-  // async findAll(): Promise<User[]> {
-  //   return this.userModel.findAll();
-  // }
-
+  // 分页
   async findAll({
     pageSize,
-    page,
+    pageNo,
   }: PaginationDto): Promise<{ content: User[]; count: number }> {
     const { rows, count } = await this.userModel.findAndCountAll({
-      order: [['id', 'DESC']],
-      limit: 10, //pageSize,
-      offset: 100, // pageSize * (page - 1),
+      order: [['id', 'ASC']],
+      limit: pageSize - 0,
+      offset: (pageNo - 1) * pageSize,
     });
 
-    // 100 => 第二页 5 6-10
     return {
       content: rows,
       count,
