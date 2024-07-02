@@ -10,5 +10,17 @@ export class User extends Model {
   username: string;
 
   @Column
+  age: string;
+
+  @Column
+  code: string;
+
+  @Column
+  address: string;
+
+  @Column
+  phone: string;
+
+  @Column
   password: string;
 }

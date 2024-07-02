@@ -12,7 +12,7 @@ import { UserModule } from './user/user.module';
       port: 3307,
       username: 'root',
       password: '111111',
-      database: 'dev2',
+      database: 'dev',
       autoLoadModels: true,
       synchronize: true,
     }),
