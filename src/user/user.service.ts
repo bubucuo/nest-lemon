@@ -66,7 +66,7 @@ export class UserService {
   async update(updateUserDto: CreateUserDto) {
     const user = await this.findOne(updateUserDto.id);
     await user.update({
-      id: updateUserDto.id,
+      // id: updateUserDto.id,
       username: updateUserDto.username,
       age: updateUserDto.age,
       code: updateUserDto.code,
@@ -79,12 +79,12 @@ export class UserService {
     return user.toJSON();
   }
 
-  async login(loginUserDto: CreateUserDto): Promise<User> {
-    return this.userModel.findOne({
-      where: {
-        username: loginUserDto.username,
-        password: loginUserDto.password,
-      },
-    });
-  }
+  // async login(loginUserDto: CreateUserDto): Promise<User> {
+  //   return this.userModel.findOne({
+  //     where: {
+  //       username: loginUserDto.username,
+  //       password: loginUserDto.password,
+  //     },
+  //   });
+  // }
 }

@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Query,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { User } from './models/user.model';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -44,7 +36,6 @@ export class UserController {
     return this.userService.findOneByName(name);
   }
 
-  // @Delete(':id')
   @Post('/delete/:id')
   remove(@Param('id') id: number): Promise<{ id: number }> {
     return this.userService.remove(id);
@@ -55,8 +46,8 @@ export class UserController {
     return this.userService.update(updateUserDto);
   }
 
-  @Post('/login')
-  login(@Body() loginUserDto: CreateUserDto): Promise<User> {
-    return this.userService.login(loginUserDto);
-  }
+  // @Post('/login')
+  // login(@Body() loginUserDto: CreateUserDto): Promise<User> {
+  //   return this.userService.login(loginUserDto);
+  // }
 }

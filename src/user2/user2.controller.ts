@@ -3,7 +3,7 @@ import { User2Service } from './user2.service';
 
 @Controller('user2')
 export class User2Controller {
-  constructor(private readonly userService: User2Service) {}
+  constructor(private readonly user2Service: User2Service) {}
 
   @Get('/test2')
   test(): string {
@@ -12,6 +12,6 @@ export class User2Controller {
 
   @Get('/list')
   async findAll() {
-    return this.userService.findAll();
+    return this.user2Service.findAll();
   }
 }
