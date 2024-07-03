@@ -5,6 +5,9 @@ import { User2Module } from './user2/user2.module';
 
 import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { NestModule } from '@nestjs/common/interfaces';
+import { MiddlewareConsumer } from '@nestjs/common/interfaces';
+import { LoggerMiddleware } from './middleware/logger.middleware';
 
 // 装饰器
 @Module({
@@ -29,6 +32,11 @@ import { MongooseModule } from '@nestjs/mongoose';
   //   User2Module,
   // ],
 })
-export class AppModule {
-  // constructor(private dataSource: DataSource) {}
+// export class AppModule {
+//   // constructor(private dataSource: DataSource) {}
+// }
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('/user/list');
+  }
 }

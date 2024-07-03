@@ -13,7 +13,7 @@ export class UserService {
 
   create(createUserDto: CreateUserDto): Promise<User> {
     return this.userModel.create({
-      id: createUserDto.id,
+      // id: createUserDto.id,
       username: createUserDto.username,
       age: createUserDto.age,
       code: createUserDto.code,

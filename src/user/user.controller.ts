@@ -3,6 +3,8 @@ import { User } from './models/user.model';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { PaginationDto } from './dto/pagination.dto';
+import { HttpException } from '@nestjs/common/exceptions';
+import { HttpStatus } from '@nestjs/common/enums';
 
 // 用户信息的控制器
 // crud操作: create read update delete 增删改查
@@ -27,8 +29,10 @@ export class UserController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number): Promise<User> {
+  findOne(@Param('id') id: number) {
     return this.userService.findOne(id);
+
+    // return res.status(HttpStatus.OK).json(this.userService.findOne(id));
   }
 
   @Get('/findOneByName/:name')
@@ -37,8 +41,23 @@ export class UserController {
   }
 
   @Post('/delete/:id')
-  remove(@Param('id') id: number): Promise<{ id: number }> {
-    return this.userService.remove(id);
+  async remove(@Param('id') id: number): Promise<{ id: number }> {
+    // return this.userService.remove(id);
+    try {
+      const res = await this.userService.remove(id);
+      return res;
+    } catch (error) {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_FOUND,
+          error: '删除失败',
+        },
+        HttpStatus.NOT_FOUND,
+        {
+          cause: error,
+        },
+      );
+    }
   }
 
   @Post('/update')
